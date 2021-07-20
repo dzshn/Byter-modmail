@@ -44,6 +44,11 @@ class Mail(commands.Cog):
         await user.send(text)
         await ctx.message.add_reaction('📬')
 
+    @commands.command(aliases=['ml'])
+    async def messagelast(self, ctx, *, text: str):
+        await self.last_msg_author.send(text)
+        await ctx.message.add_reaction('📬')
+
     @commands.command(aliases=['c'])
     async def close(self, ctx):
         self.last_dm_author = None
