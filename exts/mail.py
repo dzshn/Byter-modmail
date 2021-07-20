@@ -79,7 +79,7 @@ class Mail(commands.Cog):
     @commands.command(aliases=['sl'])
     async def setlast(self, ctx):
         self.current_dm = self.last_msg_author
-        await ctx.send(f'DM set to {self.last_dm_author}')
+        await ctx.send(f'DM set to {self.current_dm}')
 
     @commands.command(aliases=['m'])
     async def message(self, ctx, userid: int, *, text: str):
