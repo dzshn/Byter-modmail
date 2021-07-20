@@ -42,6 +42,7 @@ class Mail(commands.Cog):
     @commands.command(aliases=['m'])
     async def message(self, ctx, user: discord.User, *, text: str):
         await user.send(text)
+        await ctx.message.add_reaction('📬')
 
     @commands.command(aliases=['c'])
     async def close(self, ctx):
