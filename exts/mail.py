@@ -57,7 +57,7 @@ class Mail(commands.Cog):
                 ).set_footer(
                     text=f'ID: {after.id}'
                 ).add_field(
-                    name=f'Edited ({before.id}), prev.:',
+                    name=f'Edited, prev.:',
                     value=(
                         before.content[:512] + 
                         ('...' if len(before.content) > 512 else '')
