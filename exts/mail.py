@@ -30,7 +30,8 @@ class Mail(commands.Cog):
             await message.add_reaction('📬')
 
     @commands.command(name='set', aliases=['s'])
-    async def _set(self, ctx, user: discord.User):
+    async def _set(self, ctx, userid: int):
+        user = await self.bot.fetch_user(userid)
         self.last_dm_author = user
         await ctx.send(f'DM set to {user}')
 
@@ -40,14 +41,17 @@ class Mail(commands.Cog):
         await ctx.send(f'DM set to {self.last_dm_author}')
 
     @commands.command(aliases=['m'])
-    async def message(self, ctx, user: discord.User, *, text: str):
+    async def message(self, ctx, userid: int, *, text: str):
+        user = await self.bot.fetch_user(userid)
         await user.send(text)
         await ctx.message.add_reaction('📬')
+        await ctx.send('Sent message to {user}')
 
     @commands.command(aliases=['ml'])
     async def messagelast(self, ctx, *, text: str):
         await self.last_msg_author.send(text)
         await ctx.message.add_reaction('📬')
+        await ctx.send('Sent message to {user}')
 
     @commands.command(aliases=['c'])
     async def close(self, ctx):
