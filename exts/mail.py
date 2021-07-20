@@ -90,7 +90,7 @@ class Mail(commands.Cog):
 
     @commands.command(aliases=['ml'])
     async def messagelast(self, ctx, *, text: str):
-        user = self.current_dm
+        user = self.last_msg_author
         await user.send(text)
         await ctx.message.add_reaction('📬')
         await ctx.send(f'Sent message to {user}')
