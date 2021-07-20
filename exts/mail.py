@@ -35,7 +35,7 @@ class Mail(commands.Cog):
             )
 
         elif self.current_dm and message.channel.id == self.modmail_channel_id and not message.content.startswith('m%'):
-            await self.last_dm_author.send(message.content)
+            await self.current_dm.send(message.content)
             await message.add_reaction('📬')
 
     @commands.Cog.listener()
