@@ -3,27 +3,25 @@ from pathlib import Path
 import discord
 from discord.ext import commands
 
+import config
+
+
 class ByterBot(commands.Bot):
     def __init__(self):
         super().__init__(
-            command_prefix=['m%']
+            command_prefix=config.prefixes
         )
 
         self.add_check(self.global_check)
-        self.allowed_role_ids = [
-            728875097808699473,
-            777720322446983179,
-            726615159459676180,
-            733954479589687367
-        ]
+        self.allowed_role_ids = config.allowed_role_ids
+        self.modmail_channel_id = config.modmail_channel_id
 
         for i in Path("exts").glob("*.py"):
-            if not i.name.startswith('_'):
-                try:
-                    self.load_extension(str(i)[:-3].replace('/', '.'))
+            try:
+                self.load_extension(str(i)[:-3].replace('/', '.'))
 
-                except commands.ExtensionError:
-                    pass
+            except commands.ExtensionError:
+                pass
 
     async def global_check(self, ctx):
         if ctx.author.top_role.id in self.allowed_role_ids:
