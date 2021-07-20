@@ -6,7 +6,7 @@ class Mail(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.modmail_channel_id = self.bot.modmail_channel_id
-        self.last_dm_author = None
+        self.current_dm = None
         self.last_msg_author = None
 
     @commands.Cog.listener()
@@ -34,7 +34,7 @@ class Mail(commands.Cog):
                 )
             )
 
-        elif self.last_dm_author and message.channel.id == self.modmail_channel_id and not message.content.startswith('m%'):
+        elif self.current_dm and message.channel.id == self.modmail_channel_id and not message.content.startswith('m%'):
             await self.last_dm_author.send(message.content)
             await message.add_reaction('📬')
 
