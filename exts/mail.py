@@ -45,13 +45,13 @@ class Mail(commands.Cog):
         user = await self.bot.fetch_user(userid)
         await user.send(text)
         await ctx.message.add_reaction('📬')
-        await ctx.send('Sent message to {user}')
+        await ctx.send(f'Sent message to {user}')
 
     @commands.command(aliases=['ml'])
     async def messagelast(self, ctx, *, text: str):
         await self.last_msg_author.send(text)
         await ctx.message.add_reaction('📬')
-        await ctx.send('Sent message to {user}')
+        await ctx.send(f'Sent message to {user}')
 
     @commands.command(aliases=['c'])
     async def close(self, ctx):
