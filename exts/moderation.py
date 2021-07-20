@@ -8,6 +8,12 @@ class Moderation(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        for role in message.author.roles:
+            if role.id == 776212011050467348:
+                await message.delete()
+
     @commands.command()
     async def delete(self, ctx, *messages: discord.Message):
         if len(messages) > 1:
